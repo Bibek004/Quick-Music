@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>QuickMusic Web</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="main-layout">
+    <main class="shazam-container">
+      <div class="main-content">
+        <h1 class="main-title">QuickMusic</h1>
+        <p class="main-subtitle">Click the button and let me listen</p>
+        
+        <button id="shazamButton" class="shazam-button">
+          <i class="fa-solid fa-microphone"></i>
+        </button>
+      </div>
+      
+      <div class="result-wrapper">
+        <div id="idResult" class="status-box result-box"></div>
+      </div>
+    </main>
+
+    <div class="right-column">
+      <aside class="panel">
+        <h2><i class="fa-solid fa-plus"></i> Add Song</h2>
+        <div class="upload-group">
+          <input id="ytUrl" type="text" class="text-input" placeholder="YouTube Video URL">
+          <input id="ytName" type="text" class="text-input" placeholder="Display name (optional)">
+          <button id="btnAddYtSong" class="btn-primary"><i class="fa-brands fa-youtube"></i> Add to Database</button>
+          <div id="ytStatus" class="status-box"></div>
+        </div>
+      </aside>
+
+      <aside class="panel">
+          <h2><i class="fa-solid fa-database"></i> Database</h2>
+          <ul id="songs" class="song-list"></ul>
+      </aside>
+    </div>
+  </div>
+
+  <script src="recorder-wav.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

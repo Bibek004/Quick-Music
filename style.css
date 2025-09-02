@@ -1,0 +1,309 @@
+/* --- CSS Variables --- */
+:root {
+  --color-bg-dark: #0a0a1a; /* Darker base */
+  --color-bg-light: #1a1a3a; /* Lighter part of gradient */
+  --color-panel-bg: rgba(28, 28, 48, 0.7); /* Slightly more opaque panel */
+  --color-panel-border: rgba(60, 60, 80, 0.3); /* Stronger panel border */
+  --color-primary-blue: #0084ff; /* Shazam-like blue */
+  --color-primary-blue-hover: #33aaff;
+  --color-text-white: #e0e0e0;
+  --color-text-muted: #a0a0b0;
+  --color-text-secondary: #c0c0d0;
+  --color-success: #4CAF50;
+  --color-error: #F44336;
+
+  --font-family: 'Inter', sans-serif;
+  --panel-border-radius: 12px;
+  --box-shadow-light: 0 4px 15px rgba(0, 0, 0, 0.2);
+  --box-shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* --- General & Reset --- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: radial-gradient(circle at top left, var(--color-bg-light) 0%, var(--color-bg-dark) 100%);
+  color: var(--color-text-white);
+  font-family: var(--font-family);
+  font-size: 16px;
+  line-height: 1.6;
+  min-height: 100vh;
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+i { margin-right: 8px; }
+h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: var(--color-text-secondary);
+}
+
+/* --- Main Layout --- */
+.main-layout {
+  display: flex;
+  gap: 32px; /* Increased gap */
+  align-items: flex-start; /* Align to top */
+  max-width: 1400px;
+  width: 100%;
+  height: calc(100vh - 48px); /* Fill available height */
+}
+
+/* --- Main Shazam Column (Center) --- */
+.shazam-container {
+  flex: 2; /* Takes up more space */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Center content vertically */
+  text-align: center;
+  height: 100%; /* Fill height */
+  position: relative; /* For result wrapper positioning */
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1; /* Allows it to take available space */
+}
+
+.main-title {
+  font-size: 3.5rem; /* Larger title */
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 12px;
+  letter-spacing: -0.03em;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+.main-subtitle {
+  font-size: 1.15rem;
+  color: var(--color-text-muted);
+  margin-bottom: 50px; /* More space before button */
+}
+
+/* --- Shazam Button --- */
+.shazam-button {
+  width: 190px; height: 190px; border-radius: 50%;
+  background: var(--color-primary-blue); border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 20px rgba(0, 132, 255, 0.6), 0 0 50px rgba(0, 132, 255, 0.4);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  animation: pulse 2.5s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+.shazam-button i { font-size: 70px; color: #fff; margin: 0; }
+.shazam-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(0, 132, 255, 0.8), 0 0 70px rgba(0, 132, 255, 0.6);
+}
+.shazam-button:active { transform: scale(0.98); }
+
+@keyframes pulse {
+  0% { transform: scale(0.96); box-shadow: 0 0 0 0 rgba(0, 132, 255, 0.7); }
+  70% { transform: scale(1.01); box-shadow: 0 0 0 25px rgba(0, 132, 255, 0); }
+  100% { transform: scale(0.96); box-shadow: 0 0 0 0 rgba(0, 132, 255, 0); }
+}
+
+/* --- Right Column Wrapper (Panels) --- */
+.right-column {
+  flex: 1; /* Takes up less space */
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  height: 100%; /* Fill height */
+}
+
+/* --- Side Panels --- */
+.panel {
+  background: var(--color-panel-bg);
+  border: 1px solid var(--color-panel-border);
+  border-radius: var(--panel-border-radius);
+  padding: 24px;
+  backdrop-filter: blur(10px);
+  box-shadow: var(--box-shadow-medium);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.panel:last-child {
+  flex-grow: 1; /* Database panel fills remaining height */
+  min-height: 0; /* Ensures proper flex behavior */
+}
+
+
+/* --- Forms & Inputs --- */
+.upload-group { display: flex; flex-direction: column; gap: 12px; }
+.text-input {
+  background-color: var(--color-bg-dark);
+  border: 1px solid var(--color-panel-border);
+  color: var(--color-text-white);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-family: var(--font-family);
+  font-size: 1rem;
+  width: 100%;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.text-input::placeholder { color: var(--color-text-muted); opacity: 0.7; }
+.text-input:focus {
+  outline: none;
+  border-color: var(--color-primary-blue);
+  box-shadow: 0 0 0 3px rgba(0, 132, 255, 0.3);
+}
+.btn-primary {
+  padding: 12px 20px; border-radius: 8px; border: none; font-family: var(--font-family);
+  font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--color-primary-blue); color: #fff;
+  box-shadow: var(--box-shadow-light);
+}
+.btn-primary:hover { background: var(--color-primary-blue-hover); transform: translateY(-1px); }
+.btn-primary:active { transform: translateY(0); }
+
+/* --- Song List (Database Panel) --- */
+.song-list {
+  list-style: none; padding: 0; overflow-y: auto; flex-grow: 1; /* Allows scrolling */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 132, 255, 0.5) transparent; /* For Firefox */
+}
+.song-list::-webkit-scrollbar { width: 8px; }
+.song-list::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); border-radius: 10px; }
+.song-list::-webkit-scrollbar-thumb { background-color: rgba(0, 132, 255, 0.5); border-radius: 10px; border: 2px solid transparent; }
+
+
+.song-list li {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--color-panel-border);
+  font-size: 0.95rem;
+  word-break: break-word;
+  line-height: 1.4;
+  color: var(--color-text-secondary);
+}
+.song-list li:last-child { border-bottom: none; }
+.song-list a { color: var(--color-primary-blue-hover); text-decoration: none; transition: color 0.2s; }
+.song-list a:hover { color: var(--color-primary-blue); text-decoration: underline; }
+
+
+/* --- Status & Results (Central Area) --- */
+.result-wrapper {
+    width: 100%;
+    max-width: 550px; /* Adjust max width for aesthetic */
+    margin-top: auto; /* Pushes it to the bottom of shazam-container */
+    margin-bottom: 0;
+    padding-bottom: 20px; /* Space from bottom */
+}
+
+.status-box {
+  background: var(--color-panel-bg);
+  border: 1px solid var(--color-panel-border);
+  border-radius: var(--panel-border-radius);
+  padding: 20px 24px; /* More padding */
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  color: var(--color-text-muted);
+  min-height: 80px; /* Taller min-height */
+  width: 100%;
+  text-align: left;
+  box-shadow: var(--box-shadow-medium);
+  transition: all 0.3s ease;
+}
+
+.status-box.loading {
+  display: flex; align-items: center; justify-content: center; gap: 12px; text-align: center;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+/* --- Specific Styles for Match Results --- */
+.result-box h3 { /* Match Found */
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-primary-blue-hover);
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.02em;
+}
+.result-box h3 i {
+    font-size: 1.3rem;
+    margin-right: 10px;
+}
+
+.result-box .matched-song-details {
+    /* --- MODIFIED: Removed border and excess margin --- */
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.result-box .matched-song-details p {
+    margin: 8px 0;
+    font-size: 1.1rem;
+    color: var(--color-text-white);
+}
+
+.result-box .matched-song-details p strong {
+    color: var(--color-text-white);
+    font-weight: 600;
+    margin-right: 5px;
+}
+
+.result-box .matched-song-details a {
+    color: var(--color-primary-blue);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+.result-box .matched-song-details a:hover {
+    color: var(--color-primary-blue-hover);
+    text-decoration: underline;
+}
+
+/* --- REMOVED: Unused styles for h4 and ul in result-box --- */
+
+/* --- Loading Spinner --- */
+.loader {
+  width: 24px; height: 24px; border: 4px solid var(--color-panel-border);
+  border-bottom-color: var(--color-primary-blue); border-radius: 50%;
+  display: inline-block; animation: rotation 1s linear infinite;
+}
+@keyframes rotation {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .main-layout {
+    flex-direction: column;
+    height: auto;
+  }
+  .shazam-container {
+    height: auto;
+    min-height: 50vh; /* Ensure some height for main content */
+  }
+  .right-column {
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+  }
+  .result-wrapper {
+      margin-top: 40px;
+      margin-bottom: 20px;
+  }
+}
+@media (max-width: 768px) {
+    .main-title { font-size: 2.8rem; }
+    .main-subtitle { font-size: 1rem; }
+    .shazam-button { width: 150px; height: 150px; }
+    .shazam-button i { font-size: 50px; }
+    .panel { padding: 20px; }
+    h2 { font-size: 1.2rem; }
+    .result-box h3 { font-size: 1.3rem; }
+    .result-box .matched-song-details p { font-size: 1rem; }
+}
