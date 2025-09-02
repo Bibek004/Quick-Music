@@ -1,7 +1,26 @@
-# Frontend
-Open `index.html` in your browser. It talks to `http://localhost:5001`.
+# Backend API
+Requires FFTW and libsndfile.
 
-Panels:
-1. **Upload Song to DB** — choose a WAV and upload. Backend fingerprints and stores in-memory.
-2. **DB Contents** — view songs loaded into DB.
-3. **Identify a Clip** — either upload a WAV clip or record N seconds in the browser (WAV encoder included). The backend returns the best match + score.
+macOS:
+```bash
+brew install fftw libsndfile
+```
+
+Ubuntu/Debian:
+```bash
+sudo apt-get update
+sudo apt-get install -y libfftw3-dev libsndfile1-dev
+```
+
+Build & run:
+```bash
+cd backend
+make
+./server
+```
+
+Endpoints:
+- `GET /songs`
+- `POST /upload?name=My%20Song.wav` — body is raw WAV bytes
+- `POST /recognize` — body is raw WAV bytes (5–8 seconds works well)
+CORS is enabled for localhost.
